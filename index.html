@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Yoseli & Bryan</title>
+    
+    <!-- =================================================================== -->
+    <!-- CONFIGURACIÓN DE VISTA PREVIA PARA WHATSAPP Y REDES SOCIALES       -->
+    <!-- =================================================================== -->
+    <meta property="og:title" content="Yoseli & Bryan - Nuestra Boda">
+    <meta property="og:description" content="Nos encantaría que nos acompañes este día tan especial. Abre el enlace para ver la invitación completa por favor confirmar asistencia.">
+    <meta property="og:image" content="https://jeffkillah1510.github.io/boda-Bryan-y-Yoseli/foto_portada.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://jeffkillah1510.github.io/boda-Bryan-y-Yoseli/">
+    <meta property="og:type" content="website">
+    <!-- =================================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Parisienne&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f2eb; 
+            color: #2c2c2c;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        #welcome-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f5f2eb; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .names-cursive { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 3.4rem; 
+            color: #1a1a1a;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .ampersand {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.8rem;
+            color: #D4AF37; 
+            display: inline-block;
+            margin: 0 4px;
+            vertical-align: middle;
+        }
+        
+        .btn-enter {
+            padding: 12px 35px; font-size: 0.85rem; background-color: #1a1a1a; color: #f5f2eb;
+            border: none; border-radius: 25px; cursor: pointer; letter-spacing: 3px;
+            text-transform: uppercase; margin-top: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .container { max-width: 450px; margin: 0 auto; background-color: #ffffff; min-height: 100vh; padding-bottom: 80px; position: relative; }
+        section { padding: 45px 25px; position: relative; }
+        
+        /* Portada */
+        .hero {
+            position: relative; height: 480px; display: flex; flex-direction: column;
+            justify-content: flex-end; padding-bottom: 50px;
+            background-image: url('foto_portada.jpg'); 
+            background-size: cover; background-position: center;
+            background-color: #3a3a3a;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.8) 100%);
+        }
+        .hero-content { position: relative; z-index: 2; color: #f5f2eb; }
+        .hero .names-cursive { color: #f5f2eb; font-size: 3.8rem; }
+        .hero .ampersand { color: #f5f2eb; font-size: 4.2rem; }
+
+        /* Contenedor Cuenta Regresiva */
+        .countdown-section { background-color: #ffffff; padding: 35px 25px 25px 25px; }
+        .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
+        .time-block { background: #faf8f5; border: 1px solid #e3ded4; padding: 12px 5px; border-radius: 8px; min-width: 75px; }
+        .time-block span { display: block; font-size: 1.5rem; font-weight: 600; color: #1a1a1a; }
+        .time-block label { font-size: 0.65rem; text-transform: uppercase; color: #777; letter-spacing: 1px; }
+
+        /* Máquina de escribir */
+        .typing-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            min-height: 25px;
+        }
+        .typing-container {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #D4AF37; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            display: inline-block;
+        }
+        
+        .start-typing {
+            animation: teclearLetras 2.5s steps(35) forwards;
+        }
+
+        @keyframes teclearLetras {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Botón Calendario */
+        .calendar-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 25px;
+        }
+        
+        .btn-calendar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: 1px solid #D4AF37;
+            background-color: transparent;
+            color: #D4AF37;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            max-width: 280px;
+        }
+        
+        .btn-calendar:hover {
+            background-color: #D4AF37;
+            color: #ffffff;
+        }
+
+        /* Modales */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .calendar-modal, .rsvp-modal {
+            background-color: #f4f4f4;
+            width: 310px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            text-align: left;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-options-list { display: flex; flex-direction: column; background-color: #ffffff; }
+        .modal-options-list a {
+            display: flex; align-items: center; gap: 15px; padding: 14px 20px; color: #2b2b2b;
+            text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid #f0f0f0; transition: background-color 0.15s;
+        }
+        .modal-options-list a:hover { background-color: #f7f7f7; }
+        .modal-options-list img { width: 22px; height: 22px; object-fit: contain; }
+
+        .modal-close-btn {
+            width: 100%; background-color: #e9e9e9; border: none; padding: 16px; color: #555555;
+            font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        .rsvp-modal { background-color: #ffffff; text-align: center; padding: 30px 20px; }
+        .rsvp-modal h4 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; }
+        .rsvp-modal p { font-size: 0.85rem; color: #666666; margin-bottom: 25px; line-height: 1.5; }
+        .rsvp-buttons-container { display: flex; gap: 12px; justify-content: center; }
+
+        .btn-modal-rsvp { padding: 12px 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; border-radius: 4px; cursor: pointer; flex: 1; }
+        .btn-modal-yes { background-color: #D4AF37; color: #ffffff; border: 1px solid #D4AF37; }
+        .btn-modal-no { background-color: #f0f0f0; color: #555555; border: 1px solid #e2e2e2; }
+
+        /* Contenedor de fotos adaptadas */
+        .single-photo-section { background-color: #f5f2eb; padding: 35px 15px; text-align: center; }
+        .single-photo-item { 
+            width: 100%; 
+            max-width: 390px; 
+            height: auto; 
+            max-height: 280px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* PASE DE ACCESO - REDISEÑO OSCURO PREMIUM */
+        .pase-negro-container {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            border: 2px solid #D4AF37;
+            border-radius: 16px;
+            padding: 45px 24px 40px 24px;
+            margin: 25px 15px 10px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+            color: #ffffff;
+            position: relative;
+        }
+        .pase-negro-container::before {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 10px; pointer-events: none;
+        }
+        .pase-titulo-oro { 
+            font-size: 1.5rem; 
+            letter-spacing: 5px; 
+            background: linear-gradient(135deg, #fce0ad 0%, #D4AF37 50%, #b38f24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase; 
+            margin-bottom: 4px; 
+            font-weight: 600;
+        }
+        .pase-subtitulo { font-size: 0.75rem; color: #8c8c8c; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 32px; }
+        
+        .pase-nombre-cursiva {
+            font-family: 'Alex Brush', cursive; 
+            font-size: 3.2rem; 
+            background: linear-gradient(135deg, #ffeaa7 0%, #D4AF37 50%, #aa8214 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 400; 
+            line-height: 1.2; 
+            margin: 10px 0 25px 0;
+        }
+        .pase-info-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            border: 1px solid rgba(212, 175, 55, 0.25); 
+            background: rgba(0, 0, 0, 0.4); 
+            border-radius: 12px; 
+            padding: 18px; 
+            margin-top: 25px; 
+            margin-bottom: 32px;
+        }
+        .pase-info-block:first-child { border-right: 1px solid rgba(212, 175, 55, 0.15); }
+        .pase-info-label { font-size: 0.65rem; text-transform: uppercase; color: #888888; letter-spacing: 1.5px; }
+        .pase-info-value { font-size: 1.25rem; font-weight: 500; color: #ffffff; margin-top: 6px; }
+
+        .btn-confirmar-oro {
+            display: inline-block; 
+            width: 100%; 
+            max-width: 290px; 
+            padding: 16px 20px; 
+            background: linear-gradient(135deg, #fcd890 0%, #D4AF37 50%, #b38b1f 100%);
+            color: #000000; 
+            border: none;
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35); 
+            transition: all 0.3s ease; 
+            margin-top: 5px;
+        }
+        
+        .btn-confirmar-oro:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(212, 175, 55, 0.5);
+        }
+        
+        .msg-asistencia-confirmada {
+            color: #22c55e; font-weight: 600; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; display: none;
+        }
+        
+        .btn-no-asistire-bloqueado {
+            display: none; width: 100%; max-width: 290px; padding: 15px 20px; background-color: #4a4a4a; color: #b3b3b3; border: none;
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin: 10px auto 0 auto; cursor: not-allowed;
+            border-radius: 25px;
+        }
+
+        .pase-rsvp-footer-text {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            border: 2px solid #D4AF37; border-radius: 12px; padding: 35px 24px; margin: 15px 15px 40px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); color: #ffffff; position: relative;
+        }
+        .pase-rsvp-footer-text::before {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px; pointer-events: none;
+        }
+        .pase-rsvp-footer-text h4 { 
+            font-size: 1.3rem; 
+            letter-spacing: 5px; 
+            background: linear-gradient(135deg, #fce0ad 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+        }
+        .pase-rsvp-footer-text .sub { font-size: 0.7rem; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; margin-bottom: 20px; display: block; opacity: 0.85; }
+        .pase-rsvp-footer-text p { font-size: 0.8rem; color: #e0e0e0; line-height: 1.7; letter-spacing: 0.5px; padding: 0 5px; }
+
+        .section-title { font-size: 1.2rem; letter-spacing: 4px; color: #1a1a1a; margin-bottom: 35px; text-transform: uppercase; font-weight: 400; }
+
+        /* Cronograma */
+        .cronograma-section { background-color: #ffffff; padding: 50px 20px; }
+        .new-timeline { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; }
+        .new-timeline-item { display: flex; align-items: center; justify-content: space-between; padding: 20px 5px; border-bottom: 1.5px solid #3b3b5c; text-align: left; }
+        .new-timeline-item:first-child { border-top: 1.5px solid #3b3b5c; }
+        .new-time { font-size: 0.95rem; font-weight: 400; color: #1a1a1a; width: 90px; flex-shrink: 0; letter-spacing: 0.5px; }
+        .new-desc { font-size: 0.85rem; font-weight: 400; color: #1a1a1a; text-transform: uppercase; letter-spacing: 1.5px; flex-grow: 1; padding-left: 10px; }
+        .new-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .new-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* Elimina el cuadro blanco al invertir el color */
+        .invert-icon { 
+            filter: invert(1); 
+            mix-blend-mode: multiply; 
+        }
+
+        /* Código de Vestimenta */
+        .vestimenta-section {
+            background-color: #fcfbfa;
+            background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0), radial-gradient(rgba(0,0,0,0.02) 1px, transparent 0);
+            background-size: 4px 4px; background-position: 0 0, 2px 2px; padding: 65px 20px;
+            border-top: 1px solid #e0dbd1; border-bottom: 1px solid #e0dbd1;
+        }
+        .v-title-cursive { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #1a1a1a; font-weight: 400; line-height: 1; }
+        .v-title-sub { font-family: 'Montserrat', sans-serif; font-size: 1rem; letter-spacing: 5px; text-transform: uppercase; color: #2c2c2c; margin-top: 5px; margin-bottom: 25px; font-weight: 400; }
+        .v-main-tag { font-family: 'Alex Brush', cursive; font-size: 4.2rem; color: #1a1a1a; font-weight: 400; line-height: 1; margin-bottom: 35px; }
+        .v-details-box { max-width: 360px; margin: 0 auto; text-align: center; font-family: 'Montserrat', sans-serif; }
+        .v-row { font-size: 0.95rem; color: #1a1a1a; margin-bottom: 14px; line-height: 1.6; }
+        .v-row strong { font-weight: 500; }
+        .v-restriction { font-size: 0.8rem; color: #666666; display: block; margin-top: 3px; padding: 0 15px; }
+        .v-harmony-msg { font-size: 0.8rem; font-style: italic; color: #888888; margin-top: 40px; max-width: 320px; margin-left: auto; margin-right: auto; line-height: 1.5; letter-spacing: 0.5px; }
+
+        /* Mesa de Regalos */
+        .regalos-section { background-color: #fbf9f5; padding: 60px 25px; border-bottom: 1px solid #e0dbd1; }
+        .r-title-cursive { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #1a1a1a; font-weight: 400; line-height: 1; }
+        .r-title-sub { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; letter-spacing: 5px; text-transform: uppercase; color: #2c2c2c; margin-top: 5px; margin-bottom: 30px; font-weight: 400; }
+        .r-icon-container { display: flex; justify-content: center; margin-bottom: 25px; }
+        .r-icon-container img { width: 65px; height: auto; display: inline-block; mix-blend-mode: multiply; }
+        .r-text { font-size: 0.85rem; color: #444444; line-height: 1.8; max-width: 340px; margin: 0 auto; letter-spacing: 0.5px; }
+
+        /* Secciones Oscuras */
+        .dark-section { background-color: #000000; color: #ffffff; padding: 50px 30px; }
+        .dark-section .section-title { color: #ffffff; font-size: 1.4rem; }
+        .dark-section p { font-size: 0.85rem; color: #e0e0e0; letter-spacing: 1px; line-height: 1.8; margin-bottom: 15px; }
+
+        .btn-action {
+            display: inline-block; padding: 14px 30px; background-color: #ffffff; color: #000000; text-decoration: none; font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-top: 15px; border: 1px solid #ffffff; width: 100%; max-width: 280px;
+        }
+
+        .foto-final-img { width: 85%; height: auto; max-height: 300px; object-fit: cover; margin: 25px auto 0 auto; display: block; border-radius: 4px; }
+
+        #music-player {
+            position: fixed; bottom: 25px; right: 25px; background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e3ded4; padding: 8px 14px; border-radius: 30px; display: flex; align-items: center; gap: 10px; z-index: 1000;
+        }
+        .player-btn { background: #1a1a1a; color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 0.7rem; }
+        .music-title { font-size: 0.7rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof iframeCargado !== 'undefined') { iframeCargado(); }"></iframe>
+
+    <div id="welcome-screen">
+        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: #777; margin-bottom: 10px;">Nuestra Boda</h2>
+        <div class="names-cursive">Yoseli<span class="ampersand">&amp;</span>Bryan</div>
+        <button class="btn-enter" onclick="startInvitation()">Abrir Invitación</button>
+    </div>
+
+    <div class="container">
+        
+        <section class="hero" id="hero-bg">
+            <div class="hero-content">
+                <div class="names-cursive">Yoseli<span class="ampersand">&amp;</span>Bryan</div>
+            </div>
+        </section>
+
+        <section class="countdown-section">
+            <div class="typing-wrapper">
+                <div class="typing-container" id="animated-date">Viernes 28 de Agosto de 2026</div>
+            </div>
+
+            <div class="countdown">
+                <div class="time-block"><span id="days">00</span><label>Días</label></div>
+                <div class="time-block"><span id="hours">00</span><label>Horas</label></div>
+                <div class="time-block"><span id="minutes">00</span><label>Min</label></div>
+                <div class="time-block"><span id="seconds">00</span><label>Seg</label></div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <button class="btn-calendar" onclick="openCalendarModal()">
+                    📅 Agregar al Calendario
+                </button>
+            </div>
+        </section>
+
+        <div id="calendarModalOverlay" class="modal-overlay" onclick="closeCalendarModal()">
+            <div class="calendar-modal" onclick="event.stopPropagation()">
+                <div class="modal-options-list">
+                    <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0AURL:https%3A%2F%2Fcalendar.google.com%0ADTSTART:20260828T190000%0ADTEND:20260829T020000%0ASUMMARY:Boda%20Yoseli%20%26%20Bryan%0ADESCRIPTION:%C2%A1Acomp%C3%A1%C3%B1anos%20a%20celebrar%20nuestra%20boda%21%0ALOCATION:Jard%C3%ADn%20y%20Terraza%20Puerta%20al%20Para%C3%ADso%2C%20C.%20Espa%C3%B1a%208451%2C%20Ju%C3%A1rez%2C%2022040%20Tijuana%2C%20B.C.%0AEND:VEVENT%0AEND:VCALENDAR" download="Boda_Yoseli_y_Bryan.ics">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple logo"> Apple
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda+Yoseli+%26+Bryan&amp;dates=20260828T190000/20260829T020000&amp;details=¡Acompáñanos+a+celebrar+nuestra+boda!+Por+favor+confirma+tu+asistencia.&amp;location=Jardín+y+Terraza+Puerta+al+Paraíso,+C.+España+8451,+Juárez,+22040+Tijuana,+B.C.&amp;sf=true&amp;output=xml" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" alt="Google Calendar"> Google
+                    </a>
+                </div>
+                <button class="modal-close-btn" onclick="closeCalendarModal()">Cerrar</button>
+            </div>
+        </div>
+
+        <div id="rsvpModalOverlay" class="modal-overlay" onclick="closeRsvpModal()">
+            <div class="rsvp-modal" onclick="event.stopPropagation()">
+                <h4 id="rsvp-modal-title">¿Estás seguro en asistir a la boda?</h4>
+                <p id="rsvp-status-text">Nos haría muy felices contar con tu presencia en este día tan especial.</p>
+                <div class="rsvp-buttons-container" id="rsvp-actions">
+                    <button class="btn-modal-rsvp btn-modal-yes" onclick="submitRSVP('Sí')">Sí</button>
+                    <button class="btn-modal-rsvp btn-modal-no" onclick="submitRSVP('No')">No</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOTO 2 (ARCO DE PIEDRA) -->
+        <section class="single-photo-section">
+            <img src="foto2.jpg?v=9" 
+                 onerror="if (this.src.indexOf('.jpg') !== -1) this.src = 'foto2.jpeg?v=9'; else if (this.src.indexOf('.jpeg') !== -1) this.src = 'foto2.png?v=9';" 
+                 class="single-photo-item" 
+                 alt="Yoseli y Bryan en el arco de piedra">
+        </section>
+
+        <!-- PASE DE ACCESO -->
+        <div class="pase-negro-container">
+            <h3 class="pase-titulo-oro">Pase de Acceso</h3>
+            <p class="pase-subtitulo">Exclusive Invitation</p>
+            
+            <div style="font-size: 0.65rem; text-transform: uppercase; color: #888888; letter-spacing: 1.5px; margin-bottom: 2px;">Titular del pase:</div>
+            <div id="pase-nombres" class="pase-nombre-cursiva">Cargando...</div>
+
+            <div class="pase-info-grid">
+                <div class="pase-info-block">
+                    <div class="pase-info-label">Mesa</div>
+                    <div id="pase-mesa" class="pase-info-value">--</div>
+                </div>
+                <div class="pase-info-block">
+                    <div class="pase-info-label">Cupos</div>
+                    <div id="pase-boletos" class="pase-info-value">--</div>
+                </div>
+            </div>
+
+            <button id="btn-principal-rsvp" onclick="openRsvpModal()" class="btn-confirmar-oro">
+                Confirmar Asistencia
+            </button>
+
+            <div id="msg-pase-exito" class="msg-asistencia-confirmada">
+                ✓ ¡Asistencia Confirmada!
+            </div>
+            <button id="msg-pase-decline" class="btn-no-asistire-bloqueado" disabled>
+                No Asistiré
+            </button>
+        </div>
+
+        <div class="pase-rsvp-footer-text">
+            <h4>RSVP</h4>
+            <span class="sub">CONFIRMACIÓN DE ASISTENCIA</span>
+            <p>PARA NOSOTROS ES MUY IMPORTANTE COMPARTIR ESTE DÍA CONTIGO. POR FAVOR AYÚDANOS A CONFIRMAR TU ASISTENCIA ANTES DEL DÍA 10 DE AGOSTO DE 2026.</p>
+        </div>
+
+        <!-- FOTO 3 (BAJO EL ÁRBOL) -->
+        <section class="single-photo-section" style="padding-bottom: 10px;">
+            <img src="foto3.jpg?v=9" 
+                 onerror="if (this.src.indexOf('.jpg') !== -1) this.src = 'foto3.jpeg?v=9'; else if (this.src.indexOf('.jpeg') !== -1) this.src = 'foto3.png?v=9';" 
+                 class="single-photo-item" 
+                 alt="Yoseli y Bryan bajo el árbol">
+        </section>
+
+        <!-- CRONOGRAMA -->
+        <section class="cronograma-section">
+            <h3 class="section-title">CRONOGRAMA DEL EVENTO</h3>
+            
+            <div class="new-timeline">
+                <div class="new-timeline-item">
+                    <div class="new-time">7:00 PM</div>
+                    <div class="new-desc">Recepcion y Bienvenida</div>
+                    <div class="new-icon">
+                        <img src="decor_cortina.png" alt="Arco" class="invert-icon">
+                    </div>
+                </div>
+
+                <div class="new-timeline-item">
+                    <div class="new-time">8:00 PM</div>
+                    <div class="new-desc">Cena Formal</div>
+                    <div class="new-icon">
+                        <img src="decor_platos.png" alt="Cena" class="invert-icon">
+                    </div>
+                </div>
+
+                <div class="new-timeline-item">
+                    <div class="new-time">9:00 PM</div>
+                    <div class="new-desc">Brindis y Primer Baile</div>
+                    <div class="new-icon">
+                        <img src="decor_champagne.png" alt="Brindis" class="invert-icon">
+                    </div>
+                </div>
+
+                <div class="new-timeline-item">
+                    <div class="new-time">9:30 PM</div>
+                    <div class="new-desc">Apertura del Baile</div>
+                    <div class="new-icon">
+                        <img src="decor_baile.png" alt="Baile" class="invert-icon">
+                    </div>
+                </div>
+
+                <div class="new-timeline-item">
+                    <div class="new-time">10:00 PM</div>
+                    <div class="new-desc">Banda</div>
+                    <div class="new-icon">
+                        <img src="decor_guitarra.png" alt="Banda">
+                    </div>
+                </div>
+
+                <div class="new-timeline-item">
+                    <div class="new-time">2:00 AM</div>
+                    <div class="new-desc">Fin del Evento</div>
+                    <div class="new-icon">
+                        <img src="decor_final.png" alt="Fin del Evento">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vestimenta-section">
+            <div class="v-title-cursive">Código de</div>
+            <div class="v-title-sub">VESTIMENTA</div>
+            <div class="v-main-tag">Formal</div>
+            
+            <div style="margin-bottom: 25px;">
+                <img src="decor_vestido.png" alt="Código de Vestimenta" style="width: 140px; height: auto; display: inline-block; mix-blend-mode: multiply;">
+            </div>
+            
+            <div class="v-details-box">
+                <div class="v-row">
+                    <strong>Caballeros:</strong> Traje completo
+                    <span class="v-restriction">(Les solicitamos evitar el uso de traje color beige, reservado para el novio)</span>
+                </div>
+                <div class="v-row" style="margin-top: 20px;">
+                    <strong>Damas:</strong> Vestido largo
+                    <span class="v-restriction">(Les pedimos amablemente evitar el color blanco, tonos claros y gama de colores pastel)</span>
+                </div>
+            </div>
+            
+            <div class="v-harmony-msg">
+                ¡Gracias por ayudarnos a mantener la armonía de nuestra boda!
+            </div>
+        </section>
+
+        <section class="regalos-section">
+            <div class="r-title-cursive">Mesa de</div>
+            <div class="r-title-sub">REGALOS</div>
+            
+            <div class="r-icon-container">
+                <img src="decor_sobre.png" alt="Lluvia de Sobres">
+            </div>
+            
+            <div class="r-text">
+                "Su compañía es nuestro mayor obsequio. Si desean hacernos un presente, lo recibiremos con mucho cariño a través de una lluvia de sobres."
+            </div>
+        </section>
+
+        <section class="dark-section">
+            <h3 class="section-title">DÍA DEL EVENTO</h3>
+            <p style="color: #D4AF37; font-weight: 600; letter-spacing: 2px;">28 DE AGOSTO DE 2026 | 7:00 PM</p>
+            <p style="margin-top: 15px;"><strong>LUGAR DEL EVENTO:</strong><br>JARDÍN Y TERRAZA PUERTA AL PARAÍSO</p>
+            <p><strong>DIRECCIÓN:</strong><br>C. ESPAÑA 8451, JUÁREZ, 22040 TIJUANA, B.C.</p>
+            <a href="http://maps.google.com/?q=Jardin+y+Terraza+Puerta+al+Paraiso+Tijuana" target="_blank" class="btn-action">Ver ubicación en mapa</a>
+        </section>
+
+        <section style="background-color: #f5f2eb; padding-bottom: 50px;">
+            <h3 style="font-family: 'Alex Brush', cursive; font-size: 2.5rem; font-weight: 400; color: #1a1a1a; margin-top: 30px;">Esperamos contar con tu presencia</h3>
+            <img src="foto_final.jpg" 
+                 onerror="if (this.src.indexOf('.jpg') !== -1) this.src = 'foto_final.jpeg'; else if (this.src.indexOf('.jpeg') !== -1) this.src = 'foto_final.png';" 
+                 class="foto-final-img" alt="Yoseli &amp; Bryan">
+        </section>
+
+    </div>
+
+    <div id="music-player" style="display: none;">
+        <span class="music-title">🎵 Canción de Fondo</span>
+        <button class="player-btn" id="play-pause-btn" onclick="toggleMusic()">❚❚</button>
+    </div>
+
+    <audio id="bg-music" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        let enviandoFormulario = false;
+        let opcionSeleccionada = "";
+
+        const heroBg = document.getElementById('hero-bg');
+        const imgPortada = new Image();
+        imgPortada.src = 'foto_portada.jpg';
+        imgPortada.onerror = function() {
+            imgPortada.src = 'foto_portada.jpeg';
+            imgPortada.onerror = function() {
+                imgPortada.src = 'foto_portada.png';
+                heroBg.style.backgroundImage = "url('foto_portada.png')";
+            };
+            heroBg.style.backgroundImage = "url('foto_portada.jpeg')";
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombresInvitados = urlParams.get('invitados') || 'Invitado Especial';
+        const mesaAsignada = urlParams.get('mesa') || 'Por asignar';
+        const totalPases = urlParams.get('pases') || '1';
+
+        document.getElementById('pase-nombres').innerText = nombresInvitados;
+        document.getElementById('pase-mesa').innerText = mesaAsignada;
+        document.getElementById('pase-boletos').innerText = totalPases === '1' ? '1 pase' : `${totalPases} pases`;
+
+        const storageKey = "boda_rsvp_" + nombresInvitados.replace(/\s+/g, '_');
+
+        function verificarAsistenciaPrevia() {
+            const respuestaGuardada = localStorage.getItem(storageKey);
+            const btnPrincipal = document.getElementById('btn-principal-rsvp');
+            
+            if (respuestaGuardada) {
+                btnPrincipal.style.display = 'none';
+                if (respuestaGuardada === 'Sí') {
+                    document.getElementById('msg-pase-exito').style.display = 'block';
+                } else if (respuestaGuardada === 'No') {
+                    document.getElementById('msg-pase-decline').style.display = 'block';
+                }
+            }
+        }
+
+        function openCalendarModal() { document.getElementById('calendarModalOverlay').classList.add('show'); }
+        function closeCalendarModal() { document.getElementById('calendarModalOverlay').classList.remove('show'); }
+        function openRsvpModal() { document.getElementById('rsvpModalOverlay').classList.add('show'); }
+        function closeRsvpModal() { document.getElementById('rsvpModalOverlay').classList.remove('show'); }
+
+        function startInvitation() {
+            document.getElementById('welcome-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('animated-date').classList.add('start-typing');
+                document.getElementById('music-player').style.display = 'flex';
+                music.play().catch(e => console.log("Auto-play bloqueado por el navegador"));
+            }, 1000);
+            verificarAsistenciaPrevia();
+            actualizarCuentaRegresiva();
+            setInterval(actualizarCuentaRegresiva, 1000);
+        }
+
+        function toggleMusic() {
+            if (music.paused) { music.play(); playPauseBtn.innerText = "❚❚"; }
+            else { music.pause(); playPauseBtn.innerText = "▶"; }
+        }
+
+        function actualizarCuentaRegresiva() {
+            const fechaBoda = new Date("August 28, 2026 19:00:00").getTime();
+            const ahora = new Date().getTime();
+            const diferencia_tiempo = fechaBoda - ahora;
+
+            if (diferencia_tiempo <= 0) { return; }
+
+            const d = Math.floor(diferencia_tiempo / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diferencia_tiempo % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diferencia_tiempo % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diferencia_tiempo % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        }
+
+        function submitRSVP(respuesta) {
+            if (enviandoFormulario) return;
+            enviandoFormulario = true;
+            opcionSeleccionada = respuesta;
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbygGclG8f_OaDscgO-0OFrM66v3qY7eE3w8jI_t7Z8/exec'; 
+            
+            const datos = new FormData();
+            datos.append('invitados', nombresInvitados);
+            datos.append('asistencia', respuesta);
+            datos.append('mesa', mesaAsignada);
+            datos.append('pases', totalPases);
+
+            document.getElementById('rsvp-modal-title').innerText = "Enviando...";
+            document.getElementById('rsvp-status-text').innerText = "Por favor, espera un momento.";
+            document.getElementById('rsvp-actions').style.display = 'none';
+
+            fetch(scriptURL, { method: 'POST', body: datos, mode: 'no-cors' })
+                .then(() => { iframeCargado(); })
+                .catch(() => { iframeCargado(); });
+        }
+
+        function iframeCargado() {
+            if (!enviandoFormulario) return;
+            
+            localStorage.setItem(storageKey, opcionSeleccionada);
+            closeRsvpModal();
+
+            const btnPrincipal = document.getElementById('btn-principal-rsvp');
+            btnPrincipal.style.display = 'none';
+
+            if (opcionSeleccionada === 'Sí') {
+                document.getElementById('msg-pase-exito').style.display = 'block';
+            } else {
+                document.getElementById('msg-pase-decline').style.display = 'block';
+            }
+            enviandoFormulario = false;
+        }
+    </script>
+</body>
+</html>
