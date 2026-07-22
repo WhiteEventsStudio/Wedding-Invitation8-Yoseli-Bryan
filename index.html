@@ -6,15 +6,15 @@
     <title>Boda Yoseli & Bryan</title>
     
     <!-- =================================================================== -->
-    <!-- CONFIGURACIÓN DE VISTA PREVIA PARA WHATSAPP Y REDES SOCIALES       -->
+    <!-- CONFIGURACIÓN DE VISTA PREVIA PARA WHATSAPP Y REDES SOCIALES        -->
     <!-- =================================================================== -->
     <meta property="og:title" content="Yoseli & Bryan - Nuestra Boda">
     <meta property="og:description" content="Nos encantaría que nos acompañes este día tan especial. Abre el enlace para ver la invitación completa por favor confirmar asistencia.">
-    <meta property="og:image" content="https://jeffkillah1510.github.io/boda-Bryan-y-Yoseli/foto_portada.jpg">
+    <meta property="og:image" content="https://whiteeventsstudio.github.io/Wedding-Invitation3-Yoseli-Bryan/foto_portada.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://jeffkillah1510.github.io/boda-Bryan-y-Yoseli/">
+    <meta property="og:url" content="https://whiteeventsstudio.github.io/Wedding-Invitation3-Yoseli-Bryan/">
     <meta property="og:type" content="website">
     <!-- =================================================================== -->
 
@@ -242,13 +242,14 @@
         
         .pase-nombre-cursiva {
             font-family: 'Alex Brush', cursive; 
-            font-size: 3.2rem; 
+            font-size: 2.7rem; 
             background: linear-gradient(135deg, #ffeaa7 0%, #D4AF37 50%, #aa8214 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 400; 
-            line-height: 1.2; 
+            line-height: 1.25; 
             margin: 10px 0 25px 0;
+            padding: 0 10px;
         }
         .pase-info-grid {
             display: grid; 
@@ -332,7 +333,6 @@
         .new-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .new-icon img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* Elimina el cuadro blanco al invertir el color */
         .invert-icon { 
             filter: invert(1); 
             mix-blend-mode: multiply; 
@@ -458,16 +458,16 @@
             <p class="pase-subtitulo">Exclusive Invitation</p>
             
             <div style="font-size: 0.65rem; text-transform: uppercase; color: #888888; letter-spacing: 1.5px; margin-bottom: 2px;">Titular del pase:</div>
-            <div id="pase-nombres" class="pase-nombre-cursiva">Cargando...</div>
+            <div id="pase-nombres" class="pase-nombre-cursiva">Marisa, Joel, Marsita, Denisse y Joelito</div>
 
             <div class="pase-info-grid">
                 <div class="pase-info-block">
                     <div class="pase-info-label">Mesa</div>
-                    <div id="pase-mesa" class="pase-info-value">--</div>
+                    <div id="pase-mesa" class="pase-info-value">4</div>
                 </div>
                 <div class="pase-info-block">
                     <div class="pase-info-label">Cupos</div>
-                    <div id="pase-boletos" class="pase-info-value">--</div>
+                    <div id="pase-boletos" class="pase-info-value">5 pases</div>
                 </div>
             </div>
 
@@ -633,9 +633,9 @@
         };
 
         const urlParams = new URLSearchParams(window.location.search);
-        const nombresInvitados = urlParams.get('invitados') || 'Invitado Especial';
-        const mesaAsignada = urlParams.get('mesa') || 'Por asignar';
-        const totalPases = urlParams.get('pases') || '1';
+        const nombresInvitados = urlParams.get('invitados') || 'Marisa, Joel, Marsita, Denisse y Joelito';
+        const mesaAsignada = urlParams.get('mesa') || '4';
+        const totalPases = urlParams.get('pases') || '5';
 
         document.getElementById('pase-nombres').innerText = nombresInvitados;
         document.getElementById('pase-mesa').innerText = mesaAsignada;
