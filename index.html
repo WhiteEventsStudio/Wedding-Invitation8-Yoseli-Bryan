@@ -247,10 +247,10 @@
         /* NOMBRES CON EL TONO DORADO EXACTO */
         .pase-nombre-cursiva {
             font-family: 'Alex Brush', cursive; 
-            font-size: 3.2rem; 
+            font-size: 2.4rem; 
             color: #c5ab85;
             font-weight: 400; 
-            line-height: 1.2; 
+            line-height: 1.25; 
             margin: 10px 0 25px 0;
         }
 
@@ -469,7 +469,7 @@
                 </div>
                 <div class="pase-info-block">
                     <div class="pase-info-label">Cupos</div>
-                    <div id="pase-boletos" class="pase-info-value">5 pases</div>
+                    <div id="pase-boletos" class="pase-info-value">1 pase</div>
                 </div>
             </div>
 
@@ -649,78 +649,6 @@
                 playPauseBtn.innerText = "▶";
             }
         }
-
-        function openCalendarModal() {
-            document.getElementById('calendarModalOverlay').classList.add('show');
-        }
-
-        function closeCalendarModal() {
-            document.getElementById('calendarModalOverlay').classList.remove('show');
-        }
-
-        function openRsvpModal() {
-            document.getElementById('rsvpModalOverlay').classList.add('show');
-        }
-
-        function closeRsvpModal() {
-            document.getElementById('rsvpModalOverlay').classList.remove('show');
-        }
-
-        function submitRSVP(respuesta) {
-            opcionSeleccionada = respuesta;
-            closeRsvpModal();
-            
-            // Actualizar interfaz visual de éxito
-            document.getElementById('btn-principal-rsvp').style.display = 'none';
-            document.getElementById('msg-pase-exito').style.display = 'block';
-            document.getElementById('msg-pase-decline').style.display = 'block';
-            if(respuesta === 'No') {
-                document.getElementById('msg-pase-exito').innerText = "✓ Asistencia Declinada";
-                document.getElementById('msg-pase-exito').style.color = '#ef4444';
-            }
-        }
-
-        // Cuenta regresiva
-        const countdownDate = new Date("August 28, 2026 19:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        const heroBg = document.getElementById('hero-bg');
-        const imgPortada = new Image();
-        imgPortada.src = 'foto_portada.jpg';
-        imgPortada.onerror = function() {
-            imgPortada.src = 'foto_portada.jpeg';
-            imgPortada.onerror = function() {
-                imgPortada.src = 'foto_portada.png';
-                heroBg.style.backgroundImage = "url('foto_portada.png')";
-            };
-            heroBg.style.backgroundImage = "url('foto_portada.jpeg')";
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const nombresInvitados = urlParams.get('invitados') || 'Rosendo, Yadira, Mayleen y Ayleen';
-        const mesaAsignada = urlParams.get('mesa') || '2';
-        const totalPases = urlParams.get('pases') || '4';
-
-        document.getElementById('pase-nombres').innerText = nombresInvitados;
-        document.getElementById('pase-mesa').innerText = mesaAsignada;
-        document.getElementById('pase-boletos').innerText = totalPases + (totalPases == '1' ? ' pase' : ' pases');
     </script>
 </body>
 </html>
